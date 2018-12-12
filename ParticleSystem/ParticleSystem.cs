@@ -10,6 +10,7 @@ namespace DiscsMFAK
     {
         public List<Disc> Discs { get; set; }
         public Vector Origin { get; set; }
+        public double ElapsedTime { get; set; }
 
         private readonly Random _random = new Random();
         private const int TimeConstant = 1000;
@@ -18,7 +19,7 @@ namespace DiscsMFAK
         {
             Discs = new List<Disc>();
             Origin = new Vector(150, 100);
-
+            ElapsedTime = 0;
             InitializeParticles(20);
         }
 
@@ -26,7 +27,7 @@ namespace DiscsMFAK
         {
             Discs = new List<Disc>();
             Origin = origin;
-
+            ElapsedTime = 0;
             InitializeParticles(numberOfParticles);
         }
 
@@ -58,6 +59,7 @@ namespace DiscsMFAK
 
                 else
                 {
+                    disc.ReduceRadius();
                     disc.UpdatePosition(e.ClipRectangle);
                 }
                     

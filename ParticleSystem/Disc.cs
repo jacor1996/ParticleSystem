@@ -124,5 +124,14 @@ namespace DiscsMFAK
             Bitmap b = new Bitmap(img, new Size((int)Rectangle.Width, (int)Rectangle.Height));
             e.Graphics.DrawImage(b, Rectangle.Location);
         }
+
+        public void ReduceRadius()
+        {
+            const float minRadius = 0.5f;
+            const float dR = 0.07f;
+
+            if (Radius > minRadius)
+                Radius -= dR;
+        }
     }
 }
