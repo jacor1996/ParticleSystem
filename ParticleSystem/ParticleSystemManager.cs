@@ -21,11 +21,11 @@ namespace DiscsMFAK
         public void InitializeParticleSystems()
         {
             ResetParticleSystem();
-            int N = random.Next(3, 10);
+            int N = random.Next(3, 7);
 
             for (int i = 0; i < N; i++)
             {
-                particleSystemsList.Add(new ParticleSystem(new Vector(random.Next(0, 400), random.Next(0, 400)),
+                particleSystemsList.Add(new ParticleSystem(new Vector(random.Next(0, 600), random.Next(0, 280)),
                     random.Next(20, 200)));
             }
         }

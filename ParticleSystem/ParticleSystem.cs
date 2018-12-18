@@ -48,17 +48,18 @@ namespace DiscsMFAK
             }
         }
 
-        public void UpdateDiscs(double elapsedTime, PaintEventArgs e)
+        public void UpdateDiscs(double elapsedTime, PaintEventArgs e, double timeOffset = 0)
         {
             foreach (Disc disc in Discs)
             {
-                if ( (elapsedTime / TimeConstant > disc.LifeTime) || disc.IsOutOfBounds(e.ClipRectangle) )
+                if ( (elapsedTime / TimeConstant > disc.LifeTime + timeOffset) || disc.IsOutOfBounds(e.ClipRectangle) )
                 {
                     disc.IsDead = true;
                 }
 
                 else
                 {
+                    disc.ApplyForce(new Vector(0, 1.5f));
                     disc.ReduceRadius();
                     disc.UpdatePosition(e.ClipRectangle);
                 }
@@ -70,7 +71,6 @@ namespace DiscsMFAK
         {
             foreach (Disc disc in Discs)
             {
-                disc.ApplyForce(new Vector(0, 1.5f));
                 if (!disc.IsDead)
                     disc.Draw(e);
 

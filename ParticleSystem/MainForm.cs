@@ -13,19 +13,17 @@ namespace DiscsMFAK
 {
     public partial class MainForm : Form
     {
+        private const int TimeConstant = 1000;
         private double _elapsedTime = 0;
-        private ParticleSystem[] particleSystems;
-        private Color[] _colors;
-        private Random random = new Random();
-        private ParticleSystemManager manager;
+        private ParticleSystemManager _manager;
 
         public MainForm()
         {
             InitializeComponent();
             DoubleBuffered = true;
             BackColor = Color.Black;
-            manager = new ParticleSystemManager();
-            manager.InitializeParticleSystems();
+            _manager = new ParticleSystemManager();
+            _manager.InitializeParticleSystems();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -42,7 +40,12 @@ namespace DiscsMFAK
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
-            manager.Draw(e);
+            _manager.Draw(e);
+            if (_elapsedTime > 1.1d * TimeConstant)
+            {
+                _elapsedTime = 0;
+                _manager.InitializeParticleSystems();
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -53,7 +56,7 @@ namespace DiscsMFAK
         private void MainForm_MouseClick(object sender, MouseEventArgs e)
         {
             _elapsedTime = 0;
-            manager.InitializeParticleSystems();
+            _manager.InitializeParticleSystems();
         }
     }
 }
