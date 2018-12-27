@@ -9,8 +9,8 @@ namespace DiscsMFAK
 {
     public class ParticleSystemManager
     {
-        private IList<ParticleSystem> particleSystemsList;
-        private Random random;
+        private readonly IList<ParticleSystem> particleSystemsList;
+        private readonly Random random;
 
         public ParticleSystemManager()
         {
@@ -20,8 +20,8 @@ namespace DiscsMFAK
 
         public void InitializeParticleSystems()
         {
-            ResetParticleSystem();
-            int N = random.Next(3, 7);
+            //ResetParticleSystem();
+            int N = random.Next(2, 5);
 
             for (int i = 0; i < N; i++)
             {

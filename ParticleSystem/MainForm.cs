@@ -14,11 +14,13 @@ namespace DiscsMFAK
     public partial class MainForm : Form
     {
         private const int TimeConstant = 1000;
-        private double _elapsedTime = 0;
+        private double _elapsedTime;
         private ParticleSystemManager _manager;
+        
 
         public MainForm()
         {
+            _elapsedTime = 0;
             InitializeComponent();
             DoubleBuffered = true;
             BackColor = Color.Black;
@@ -38,10 +40,12 @@ namespace DiscsMFAK
             timer.Start();
         }
 
+      
+
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             _manager.Draw(e);
-            if (_elapsedTime > 1.1d * TimeConstant)
+            if (_elapsedTime > 0.25d * TimeConstant)
             {
                 _elapsedTime = 0;
                 _manager.InitializeParticleSystems();
